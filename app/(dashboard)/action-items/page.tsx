@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTeam } from "@/app/context/TeamContext";
 
@@ -287,7 +287,7 @@ const FILTER_OPTIONS = [
   { id: "pickup", label: "Pickup" },
 ];
 
-export default function ActionItemsPage() {
+function ActionItemsContent() {
   const { teamId } = useTeam();
   const searchParams = useSearchParams();
 
@@ -636,5 +636,13 @@ export default function ActionItemsPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function ActionItemsPage() {
+  return (
+    <Suspense>
+      <ActionItemsContent />
+    </Suspense>
   );
 }
