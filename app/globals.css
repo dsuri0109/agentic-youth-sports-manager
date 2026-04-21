@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-volt: #C8F000;
+  --color-navy: #0D1B2E;
+  --color-offwhite: #F5F5F0;
+  --color-white: #FFFFFF;
+
+  /* Extended palette */
+  --color-navy-800: #112240;
+  --color-navy-700: #1a3a5c;
+  --color-volt-dim: #a8cc00;
+
+  /* Fonts */
+  --font-heading: var(--font-barlow-condensed);
+  --font-body: var(--font-barlow);
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #0D1B2E;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-barlow), Arial, Helvetica, sans-serif;
+}
+
+@keyframes ringPulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.07); }
+}
+
+@keyframes voiceBar {
+  0%   { transform: scaleY(0.2); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Multi-step waveform — organic feel with 3 keypoints */
+@keyframes waveOscillate {
+  0%   { transform: scaleY(0.15); }
+  30%  { transform: scaleY(1);    }
+  60%  { transform: scaleY(0.4);  }
+  100% { transform: scaleY(0.8);  }
 }
